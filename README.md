@@ -1,6 +1,6 @@
 # Vibe Nav
 
-现代、简洁的个人导航站，支持浏览器书签导入、亮暗主题切换、后台管理。
+现代、简洁的个人导航站，支持浏览器书签导入、亮暗主题切换、后台管理。纯AI写的，没有一行代码是手动写的。除了这个目录是手动创建……
 
 ## 功能
 
@@ -16,15 +16,15 @@
 
 ## 技术栈
 
-| 层 | 技术 |
-|---|---|
-| 框架 | Next.js 14 (App Router) |
-| 语言 | TypeScript |
-| 样式 | Tailwind CSS v3 |
-| 存储 | JSON 文件 |
+| 层  | 技术                               |
+| -- | -------------------------------- |
+| 框架 | Next.js 14 (App Router)          |
+| 语言 | TypeScript                       |
+| 样式 | Tailwind CSS v3                  |
+| 存储 | JSON 文件                          |
 | 鉴权 | HMAC-SHA256 签名 + httpOnly Cookie |
-| 主题 | next-themes + CSS 变量 |
-| 部署 | Docker / Docker Compose |
+| 主题 | next-themes + CSS 变量             |
+| 部署 | Docker / Docker Compose          |
 
 ## 开发
 
@@ -43,10 +43,10 @@ npm run dev
 
 ### 环境变量
 
-| 变量 | 说明 | 默认值 |
-|---|---|---|
+| 变量               | 说明       | 默认值        |
+| ---------------- | -------- | ---------- |
 | `ADMIN_PASSWORD` | 后台管理登录密码 | `admin123` |
-| `AUTH_SECRET` | 会话签名密钥 | 随机生成 |
+| `AUTH_SECRET`    | 会话签名密钥   | 随机生成       |
 
 ```bash
 # 生成安全的 AUTH_SECRET
@@ -136,3 +136,4 @@ src/
 1. 后台点击「⚙️ 配置」
 2. 填写网站名称、Logo URL、Favicon URL
 3. 保存后刷新页面生效
+
