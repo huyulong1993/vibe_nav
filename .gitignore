@@ -10,9 +10,9 @@ dist/
 
 # Environment files (contains secrets)
 .env
-.env.local
-.env.production
-.env.*.local
+.env.*
+!.env.example
+!.env.docker.example
 
 # Data directory (runtime data, keep for backup but not in git)
 data/

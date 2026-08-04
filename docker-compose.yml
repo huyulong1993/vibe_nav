@@ -1,21 +1,13 @@
-version: "3.8"
-
 services:
   vibe-nav:
     build: .
     container_name: vibe-nav
     ports:
-      - "3456:9000"
+      - "${PORT:-3456}:9000"
+    env_file:
+      - .env.docker
     environment:
       - NODE_ENV=production
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
-      - AUTH_SECRET=${AUTH_SECRET:-change-me}
     volumes:
-      # 持久化 data 目录（书签、分类、设置等）
       - ./data:/vibe-nav/data
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3456"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
