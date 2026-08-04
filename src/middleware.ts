@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 const COOKIE_NAME = "vibe_nav_token";
 const WRITE_METHODS = ["POST", "PUT", "DELETE", "PATCH"];
-const PROTECTED_API_PREFIXES = ["/api/categories", "/api/bookmarks", "/api/import"];
+const PROTECTED_API_PREFIXES = ["/api/categories", "/api/bookmarks", "/api/import", "/api/settings", "/api/fetch-meta"];
 const ADMIN_PATH = "/admin";
 const LOGIN_PATH = "/admin/login";
 const AUTH_API = "/api/auth";

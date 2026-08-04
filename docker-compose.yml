@@ -3,11 +3,11 @@ services:
     build: .
     container_name: vibe-nav
     ports:
-      - "${PORT:-3456}:9000"
+      - "${PORT:-9000}:3456"
     env_file:
       - .env.docker
     environment:
       - NODE_ENV=production
     volumes:
-      - ./data:/vibe-nav/data
+      - ./data:/app/data
     restart: unless-stopped
