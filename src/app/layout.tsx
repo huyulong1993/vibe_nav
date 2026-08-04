@@ -4,6 +4,8 @@ import { Providers } from "@/components/Providers";
 import { Navbar } from "@/components/Navbar";
 import { getSettings } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const settings = getSettings();
   const icons: any = {};
