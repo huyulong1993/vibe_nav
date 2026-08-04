@@ -20,10 +20,9 @@ ENV PORT=3456
 # 仅复制 standalone 输出
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
 
-# 创建数据目录
-RUN mkdir -p /app/data
+# 确保 public 和 data 目录存在
+RUN mkdir -p /app/public /app/data
 
 EXPOSE 3456
 
