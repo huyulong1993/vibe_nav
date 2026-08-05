@@ -26,6 +26,7 @@ export default function AdminPage() {
   const [editingCat, setEditingCat] = useState<Category | null>(null);
   const [bmFormOpen, setBmFormOpen] = useState(false);
   const [editingBm, setEditingBm] = useState<Bookmark | null>(null);
+  const [defaultCategoryId, setDefaultCategoryId] = useState<string | undefined>(undefined);
   const [importOpen, setImportOpen] = useState(false);
   const [batchRunning, setBatchRunning] = useState(false);
   const [batchProgress, setBatchProgress] = useState({ current: 0, total: 0, done: 0, failed: 0 });
@@ -188,6 +189,19 @@ export default function AdminPage() {
     fetchData();
   };
 
+  const handleAddBookmark = (cat: Category) => {
+    console.log(`${LOG_PREFIX} 新增书签 | category="${cat.name}" id="${cat.id}"`);
+    setEditingBm(null);
+    setDefaultCategoryId(cat.id);
+    setBmFormOpen(true);
+  };
+
+  const handleEditBookmark = (bm: Bookmark) => {
+    setEditingBm(bm);
+    setDefaultCategoryId(undefined);
+    setBmFormOpen(true);
+  };
+
   const handleDeleteBookmark = async (bm: Bookmark) => {
     console.log(`${LOG_PREFIX} 删除书签确认 | title="${bm.title}" id="${bm.id}"`);
     if (!confirm(`确定要删除书签「${bm.title}」吗？`)) {
@@ -273,9 +287,10 @@ export default function AdminPage() {
             category={cat}
             bookmarks={cat.bookmarks}
             showActions
+            onAddBookmark={handleAddBookmark}
             onEditCategory={() => { setEditingCat(cat); setCatFormOpen(true); }}
             onDeleteCategory={() => handleDeleteCategory(cat)}
-            onEditBookmark={(bm) => { setEditingBm(bm); setBmFormOpen(true); }}
+            onEditBookmark={handleEditBookmark}
             onDeleteBookmark={(bm) => handleDeleteBookmark(bm)}
           />
         ))}
@@ -324,10 +339,11 @@ export default function AdminPage() {
       />
       <BookmarkForm
         open={bmFormOpen}
-        onClose={() => { setBmFormOpen(false); setEditingBm(null); }}
-        onSaved={() => { setBmFormOpen(false); setEditingBm(null); fetchData(); }}
+        onClose={() => { setBmFormOpen(false); setEditingBm(null); setDefaultCategoryId(undefined); }}
+        onSaved={() => { setBmFormOpen(false); setEditingBm(null); setDefaultCategoryId(undefined); fetchData(); }}
         editing={editingBm}
         categories={categories}
+        defaultCategoryId={defaultCategoryId}
       />
       <ImportModal
         open={importOpen}

@@ -7,6 +7,7 @@ interface CategoryCardProps {
   category: Category;
   bookmarks: Bookmark[];
   showActions?: boolean;
+  onAddBookmark?: (category: Category) => void;
   onEditBookmark?: (bm: Bookmark) => void;
   onDeleteBookmark?: (bm: Bookmark) => void;
   onEditCategory?: () => void;
@@ -17,6 +18,7 @@ export function CategoryCard({
   category,
   bookmarks,
   showActions,
+  onAddBookmark,
   onEditBookmark,
   onDeleteBookmark,
   onEditCategory,
@@ -38,6 +40,15 @@ export function CategoryCard({
 
         {showActions && (
           <div className="flex items-center gap-1 opacity-0 group-hover/cat:opacity-100 transition-opacity">
+            {onAddBookmark && (
+              <button
+                onClick={() => onAddBookmark(category)}
+                className="p-1.5 rounded-lg hover:bg-accent/20 text-app-text-muted hover:text-accent-light transition-colors text-xs"
+                title="添加书签"
+              >
+                ➕
+              </button>
+            )}
             {onEditCategory && (
               <button
                 onClick={onEditCategory}

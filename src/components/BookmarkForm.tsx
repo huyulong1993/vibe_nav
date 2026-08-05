@@ -11,9 +11,10 @@ interface BookmarkFormProps {
   onSaved: () => void;
   editing?: Bookmark | null;
   categories: Category[];
+  defaultCategoryId?: string;
 }
 
-export function BookmarkForm({ open, onClose, onSaved, editing, categories }: BookmarkFormProps) {
+export function BookmarkForm({ open, onClose, onSaved, editing, categories, defaultCategoryId }: BookmarkFormProps) {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [icon, setIcon] = useState("");
@@ -33,7 +34,7 @@ export function BookmarkForm({ open, onClose, onSaved, editing, categories }: Bo
       setDescription(editing.description || "");
       setCategoryId(editing.category_id);
     } else {
-      const defaultCatId = categories[0]?.id || "";
+      const defaultCatId = defaultCategoryId || categories[0]?.id || "";
       console.log(`${LOG_PREFIX} 打开新建模式 | 可用分类数=${categories.length} | 默认分类id="${defaultCatId}"`);
       setTitle("");
       setUrl("");
